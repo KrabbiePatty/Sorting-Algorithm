@@ -1,11 +1,46 @@
-var randomWords = require('random-words');
+#!/usr/bin/node
+const randomWords = require('random-words');
+const question = "Enter a word or press enter to stop";
 
-var count = 10
-var wordlist = randomWords(count)
+var answers = [];
 
+function ask() {
+    process.stdout.write(question + '\n');
+    process.stdout.write('  >  ');
+}
 
-console.log(wordlist)
+process.stdin.on('data', function(data) {
+    var response = data.toString().trim();
+    if (response == "") {
+	process.stdout.write('\nYour words were: ')
+	for (let i = 0; i < answers.length; i++) {
+	    process.stdout.write(answers[i])
+	    if (i + 1 < answers.length) {
+		process.stdout.write(', ')
+	    }
+	}
+	process.stdout.write('\n');
+	split(answers);
+	process.exit();
+    } else {
+	answers.push(data.toString().trim());
+	ask();
+    }
+    
+});
 
+ask();
+
+function split(array){
+    const half = array.length/2
+
+    if (array.length < 2) {
+	return array
+    }
+
+    const left = array.splice(0,half)
+    process.stdout.write( merge(split(left),split(array)))
+}
 function sort() {
 
 }
@@ -13,7 +48,7 @@ function sort() {
 function merge(left, right) {
     let output = []
 
-    while (left.length > 0 && right.length) {
+    while (left.length > 0 && right.length > 0) {
         if (compare(left[0], right[0], 0)) {
             output.push(left[0])
         } else {
@@ -35,11 +70,5 @@ function compare(left, right, letter) {
     }
 }
 
-var sortedwordlist = wordlist.sort()
-console.log(sortedwordlist)
-
-var left = ['poop', 'pee', 'beastie', 'shit', 'apple']
-var right = ['balls', 'cock', 'peen', 'ass', 'testicles']
-
-console.log(compare('test', 'another', 0))
-console.log(merge(left, right, 0))
+//var sortedwordlist = wordlist
+//console.log(sortedwordlist)
