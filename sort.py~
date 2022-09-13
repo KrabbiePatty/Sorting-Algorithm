@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+
+inputs = []
+while True:
+        inp = input("Type Anything/ Press Enter: ")
+        if inp == "":
+                break
+        inputs.append(inp)
+        
+        print(inputs)

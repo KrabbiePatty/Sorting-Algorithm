@@ -21,7 +21,7 @@ process.stdin.on('data', function(data) {
 	    }
 	}
 	process.stdout.write('\n');
-	split(answers);
+	merge(sort(split(answers,1)),sort(split(answers,2)));
 	process.exit();
     } else {
 	answers.push(data.toString().trim());
@@ -31,19 +31,22 @@ process.stdin.on('data', function(data) {
     
 });
 
-ask();
 
-function split(array){
+
+function split(array, whichHalf){
     const half = array.length/2
-    process.stdout.write(array.length)
-    process.stdout.write(half)
     if (array.length < 2) {
 	return array
     }
     const right= array.splice(half,half + 1)
     const left = array.splice(0,half)
-    process.stdout.write(left[0])
+    if (whichHalf == 1) {
+	process.stdout.write(left[0])
+	return left
+    } else {
+	return right
     }
+}
 
 function sort(array) {
     const output = []
@@ -123,6 +126,6 @@ function compare(left, right, letter) {
     
 }
 
-
+ask();
 //var sortedwordlist = wordlist
 //console.log(sortedwordlist)

@@ -1,0 +1,7 @@
+#!/usr/bin/node
+
+var readline = require('readline');
+
+var words = readLine()
+
+console.log(words)
