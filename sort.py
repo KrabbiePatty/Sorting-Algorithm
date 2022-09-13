@@ -12,8 +12,19 @@ while True:
 
 # Placeholder for the main sort logic to call the child functions #
 def sort(wordlist):
-        exit
-
+        splitwords = list(split(wordlist, 1))
+        print(splitwords)
+        
+        while len(splitwords) > 1:
+                groups = len(splitwords)
+                i = 1
+                while len(splitwords) > ((groups / 2) + (groups % 2)):
+                        print('looped')
+                        splitwords.append(merge(splitwords[0], splitwords[1]))
+                        splitwords.remove(splitwords[0])
+                        splitwords.remove(splitwords[0])
+                print(splitwords)
+                        
 # Splits a list into groups of n #
 def split(wordlist, n):
     for x in range(0, len(wordlist), n):
@@ -43,6 +54,7 @@ def merge(left, right):
 
 # Compares two words and returns true if left, false if right, and true if same as it does not matter #
 def compare(left, right, letter):
+        
         if (left == right):
                 return True
 
@@ -54,3 +66,6 @@ def compare(left, right, letter):
         
         elif (ord(left[letter]) == ord(right[letter])):
                 return compare(left, right, letter + 1)
+
+
+sort(wordlist)
