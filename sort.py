@@ -3,27 +3,26 @@
 # Take in standard user input and add it to the wordlist, can be optimized by not printing the prompt between words #
 wordlist = []
 while True:
-        inp = input("Type Anything/ Press Enter: ")
-        if inp == "":
+        try:
+                wordlist.append(input()))
+        except EOFError:
+                wordlist_str = '\n'.join(wordlist)
+
                 break
-        wordlist.append(inp)
-        
-        print(wordlist)
+
 
 # Placeholder for the main sort logic to call the child functions #
 def sort(wordlist):
         splitwords = list(split(wordlist, 1))
-        print(splitwords)
         
         while len(splitwords) > 1:
                 groups = len(splitwords)
                 i = 1
                 while len(splitwords) > ((groups / 2) + (groups % 2)):
-                        print('looped')
                         splitwords.append(merge(splitwords[0], splitwords[1]))
                         splitwords.remove(splitwords[0])
                         splitwords.remove(splitwords[0])
-                print(splitwords)
+               
                         
 # Splits a list into groups of n #
 def split(wordlist, n):
@@ -69,3 +68,4 @@ def compare(left, right, letter):
 
 
 sort(wordlist)
+print(wordlist)
