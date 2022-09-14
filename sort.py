@@ -4,7 +4,7 @@
 wordlist = []
 while True:
         try:
-                wordlist.append(input()))
+                wordlist.append(input())
         except EOFError:
                 wordlist_str = '\n'.join(wordlist)
 
@@ -22,6 +22,7 @@ def sort(wordlist):
                         splitwords.append(merge(splitwords[0], splitwords[1]))
                         splitwords.remove(splitwords[0])
                         splitwords.remove(splitwords[0])
+        return splitwords
                
                         
 # Splits a list into groups of n #
@@ -53,8 +54,15 @@ def merge(left, right):
 
 # Compares two words and returns true if left, false if right, and true if same as it does not matter #
 def compare(left, right, letter):
-        
-        if (left == right):
+        left = left.lower()
+        right = right.lower()
+        if ((len(left) - 1) < letter):
+                return True
+
+        elif ((len(right) - 1) < letter):
+                return False
+
+        elif (left == right):
                 return True
 
         elif (ord(left[letter]) < ord(right[letter])):
@@ -67,5 +75,4 @@ def compare(left, right, letter):
                 return compare(left, right, letter + 1)
 
 
-sort(wordlist)
-print(wordlist)
+print(sort(wordlist))
