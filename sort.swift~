@@ -1,0 +1,36 @@
+import Foundation
+
+
+
+
+/* get standard imput */
+var wordlist:[String] = []
+
+/*might not work
+  */
+
+if "A" > "a" {
+    print("it works")
+} else {
+    print("nop")
+}
+
+
+
+
+/*compare funoaction
+  */
+
+func compare(Left:String, Right:String) -> Bool {
+    if Left < Right {
+        return true
+    } else if Left > Right {
+        return false
+    } else if Left == Right {
+        return true
+    } else {
+        return true
+    }
+}
+
+print(compare(Left:"apple", Right: "banana"))
