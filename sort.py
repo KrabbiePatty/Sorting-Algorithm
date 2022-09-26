@@ -35,6 +35,7 @@ def split(wordlist, n):
                 [None for y in range(n-len(every_chunk))]
         yield every_chunk
 
+
 # Merges two, pre sorted lists into one sorted list #
 def merge(left, right):
         output = []
@@ -62,9 +63,6 @@ def compare(left, right, letter):
         elif ((len(right) - 1) < letter):
                 return False
 
-        elif (left == right):
-                return True
-
         elif (ord(left[letter]) < ord(right[letter])):
                 return True
 
@@ -73,6 +71,10 @@ def compare(left, right, letter):
         
         elif (ord(left[letter]) == ord(right[letter])):
                 return compare(left, right, letter + 1)
+
+        elif (left == right):
+                return True
+
 
 
 print(sort(wordlist))
