@@ -13,7 +13,7 @@ while True:
 
 # Placeholder for the main sort logic to call the child functions #
 def sort(wordlist):
-        splitwords = list(split(wordlist, 1))
+        splitwords = list(split(wordlist, 2))
         
         while len(splitwords) > 1:
                 groups = len(splitwords)
@@ -27,14 +27,17 @@ def sort(wordlist):
                         
 # Splits a list into groups of n #
 def split(wordlist, n):
-    for x in range(0, len(wordlist), n):
-        every_chunk = wordlist[x: n+x]
-
-        if len(every_chunk) < n:
-            every_chunk = every_chunk + \
-                [None for y in range(n-len(every_chunk))]
-        yield every_chunk
-
+        for x in range(0, len(wordlist), n):
+                every_chunk = wordlist[x: n+x]
+                
+                if len(every_chunk) < n:
+                        every_chunk = every_chunk + \
+                                ["" for y in range(n-len(every_chunk))]
+                if len(every_chunk) > 1:
+                        if compare(every_chunk[0], every_chunk[1], 0) == False:
+                                every_chunk.reverse()
+                yield every_chunk
+                        
 
 # Merges two, pre sorted lists into one sorted list #
 def merge(left, right):
@@ -75,6 +78,7 @@ def compare(left, right, letter):
         elif (left == right):
                 return True
 
-
-
-print(sort(wordlist))
+sortedlist = sort(wordlist)
+        
+for word in sortedlist[0]:
+        print(word)
